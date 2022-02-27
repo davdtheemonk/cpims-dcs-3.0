@@ -1,16 +1,13 @@
 """OVC care section urls."""
-from django.conf.urls import patterns, url
+from django.urls import path
+from cpovc_ovc.views import(ovc_home,ovc_search,ovc_register,ovc_edit,ovc_view,hh_manage)
 
-# This should contain urls related to registry ONLY
-urlpatterns = patterns(
-    'cpovc_ovc.views',
-    url(r'^$', 'ovc_home', name='ovc_home'),
-    url(r'^ovc/search/$', 'ovc_search', name='ovc_search'),
-    url(r'^ovc/new/(?P<id>\d+)/$',
-        'ovc_register', name='ovc_register'),
-    url(r'^ovc/edit/(?P<id>\d+)/$',
-        'ovc_edit', name='ovc_edit'),
-    url(r'^ovc/view/(?P<id>\d+)/$',
-        'ovc_view', name='ovc_view'),
-    url(r'^hh/view/(?P<hhid>[0-9A-Za-z_\-]+)/$',
-        'hh_manage', name='hh_manage'),)
+# This should contain urls related to registry ONLy
+urlpatterns = [
+    path(r'^$', ovc_home, name='ovc_home'),
+    path(r'^ovc/search/$', ovc_search, name='ovc_search'),
+    path(r'^ovc/new/<int: id>/$',ovc_register, name='ovc_register'),
+    path(r'^ovc/edit/<int: id>/$',ovc_edit, name='ovc_edit'),
+    path(r'^ovc/view/<int: id>/$',ovc_view, name='ovc_view'),
+    path(r'^hh/view/<int: id>/$',hh_manage, name='hh_manage')
+]
